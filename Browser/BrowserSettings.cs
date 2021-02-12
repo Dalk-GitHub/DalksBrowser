@@ -15,6 +15,7 @@ namespace Chromium
         }
         public ColorDesigner.CombinedColor Design = ColorDesigner.ColorDesigns.DarkDesign;
         public string SearchRequestPrefab = "https://www.google.com/search?client=dalkbrowser&q={0}";
+        public string Startpage = "https://www.google.com";
         public void Init()
         {
             ColorDesigner.CurrentDesign = Design;

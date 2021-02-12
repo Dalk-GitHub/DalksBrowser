@@ -47,7 +47,7 @@ namespace Chromium
         {
             this.Invoke(new Action(() =>
             {
-                string url = "http://google.com";
+                string url = Program.s.Startpage;
                 #region init
                 Panel tabtop = new Panel();
                 PictureBox icon = new PictureBox();

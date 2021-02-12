@@ -71,7 +71,7 @@ namespace Chromium
             this.url.Multiline = true;
             this.url.Size = new System.Drawing.Size(1087, 23);
             this.url.TabIndex = 1;
-            this.url.Text = "http://google.com";
+            this.url.Text = Program.s.Startpage;
             this.url.TextChanged += new System.EventHandler(this.Url_TextChanged);
             this.url.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 

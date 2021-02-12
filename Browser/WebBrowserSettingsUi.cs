@@ -55,6 +55,9 @@ function designc(){
 function setser(){
     window.open('ser://' + document.getElementById('ser').value);
 }
+function setsers(){
+    window.open('sers://' + document.getElementById('sers').value);
+}
 </script><center>
     <h1>Design</h1>
     <button onclick='designa()'>Blue Design</button>
@@ -65,6 +68,9 @@ function setser(){
 <h1>Environment</h1>
 <input type='text' id='ser' value='" + Program.s.SearchRequestPrefab+@"' />
 <button onclick='setser()'>Set Search Url</button>
+<p />
+<input type='text' id='sers' value='" + Program.s.Startpage+@"' />
+<button onclick='setsers()'>Set Startpage</button>
 <p>Note: {0} gets replaced with text string to search!</p>
 <p>Note: Restart the browser that changes work!</p>
 </center></body>
@@ -105,6 +111,11 @@ function setser(){
             if (targetUrl.StartsWith("ser://"))
             {
                 Program.s.SearchRequestPrefab = targetUrl.Remove(0,6);
+                DotDat.Save<WebBrowserSettings>("browser.setting", Program.s);
+            }
+            if (targetUrl.StartsWith("sers://"))
+            {
+                Program.s.Startpage = targetUrl.Remove(0, 7);
                 DotDat.Save<WebBrowserSettings>("browser.setting", Program.s);
             }
             switch (targetUrl)
