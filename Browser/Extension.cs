@@ -28,6 +28,16 @@ namespace Chromium
 
             return c;
         }
+        /// <summary>
+        /// Get InzPtr for Rounded Corners
+        /// </summary>
+        /// <param name="nLeftRect"></param>
+        /// <param name="nTopRect"></param>
+        /// <param name="nRightRect"></param>
+        /// <param name="nBottomRect"></param>
+        /// <param name="nWidthEllipse"></param>
+        /// <param name="nHeightEllipse"></param>
+        /// <returns></returns>
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -38,6 +48,12 @@ namespace Chromium
             int nWidthEllipse, // width of ellipse
             int nHeightEllipse // height of ellipse
         );
+        /// <summary>
+        /// Extension method for control to create rounded corners
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public static Control ToRoundedCorners(this Control c, int i)
         {
             c.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, c.Width, c.Height, i, i));

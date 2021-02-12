@@ -14,26 +14,42 @@ namespace Chromium
 {
     public static class DotDat
     {
+        /// <summary>
+        /// Save Serializible Class to File
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static T Load<T>(string fileName)
         {
-            T list;
+            T res;
             if (File.Exists(fileName))
             {
+                // get stram
                 using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
                 {
+                    // deserialize
                     var formatter = new BinaryFormatter();
-                    list = (T)
+                    res = (T)
                         formatter.Deserialize(stream);
                 }
             }
             else
+                //throw execption if file not existing
                 throw new IOException("File not found");
-            return list;
+            return res;
         }
+        /// <summary>
+        /// Load serializible class from File
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"></param>
+        /// <param name="list"></param>
         public static void Save<T>(string fileName, T list)
         {
             using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
             {
+                // serialize
                 var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, list);
             }

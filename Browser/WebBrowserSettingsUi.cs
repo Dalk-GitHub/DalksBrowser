@@ -23,6 +23,7 @@ namespace Chromium
         {
             try
             {
+                //Create Html File with Settings!
                 File.WriteAllText("settings.design", @"
 <!doctype html>
 <html>
@@ -42,6 +43,7 @@ body{
 </style>
 </head>
 <body>
+<!--Execute window.open() to set the values-->
 <script>
 function designa(){
     window.open('design://blue');
@@ -76,6 +78,7 @@ function setsers(){
 </center></body>
 </html>
 ");
+                //Open settings In Settings Browser
                 chromiumWebBrowser1.LifeSpanHandler = new SettingHandler();
                 chromiumWebBrowser1.LoadHtml(File.ReadAllText("settings.design"));
             }
@@ -106,6 +109,7 @@ function setsers(){
         {
 
         }
+        //Handle the Setting Actions
         public bool OnBeforePopup(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
             if (targetUrl.StartsWith("ser://"))

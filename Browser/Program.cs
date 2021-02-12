@@ -16,6 +16,7 @@ namespace Chromium
         [STAThread]
         static void Main()
         {
+            //load browser settings if they exist
             if (File.Exists("browser.setting"))
             {
                 s = DotDat.Load<WebBrowserSettings>("browser.setting");
@@ -23,9 +24,11 @@ namespace Chromium
             }
             try
             {
+                // run app
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new TabManager());
+                //delete old favicons after close
                 try
                 {
                     Directory.Delete("./fav", true);
@@ -36,6 +39,7 @@ namespace Chromium
             {
                 MessageBox.Show(ex.ToString());
             }
+            // Save browser settings
             DotDat.Save<WebBrowserSettings>("browser.setting", s);
         }
     }

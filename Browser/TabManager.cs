@@ -31,15 +31,16 @@ namespace Chromium
             Tabs.NewTab += new EventHandler<string>((s, e1) => { NewTab(e1); });
             Tabs.CloseTab += new EventHandler<int>((s, e1) => { CloseTab(e1); });
         }
-        public static void ShowFormInContainerControl(Control ctl, Form frm)
+        public static void ShowFormInContainerControl(Control ctl, Form form)
         {
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            frm.Visible = true;
-            ctl.Controls.Add(frm);
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            form.Visible = true;
+            ctl.Controls.Add(form);
         }
         int tabsindex = 0;
+        // Item lists
         readonly Dictionary<int, Control> tabsList = new Dictionary<int, Control>();
         readonly Dictionary<int, Control> tabsList1 = new Dictionary<int, Control>();
         readonly Dictionary<int, Control> tabsList2 = new Dictionary<int, Control>();
@@ -48,7 +49,7 @@ namespace Chromium
             this.Invoke(new Action(() =>
             {
                 string url = Program.s.Startpage;
-                #region init
+                #region Initialize TabManager Design
                 Panel tabtop = new Panel();
                 PictureBox icon = new PictureBox();
 
@@ -97,7 +98,7 @@ namespace Chromium
         {
             this.Invoke(new Action(() =>
             {
-                #region init
+                #region Initialize Settings Button
                 Panel tabtop = new Panel();
                 PictureBox icon = new PictureBox();
 
@@ -143,16 +144,25 @@ namespace Chromium
                 tabsList2[tabsindex] = ol;
             }));
         }
+        /// <summary>
+        /// Init new tab by url
+        /// </summary>
+        /// <param name="url"></param>
         private void NewTab(string url)
         {
             this.Invoke(new Action(() =>
             {
                 var site = new WebTab(url);
-                #region init
+                #region Initialize Tab Controls and Browser
+                //Panel for Tab
                 Panel tabtop = new Panel();
+                // Browser Tab
                 Panel tabview = new Panel();
+                // Site Icon
                 PictureBox icon = new PictureBox();
+                // Close Button
                 PictureBox close = new PictureBox();
+                // Display site title
                 Label name = new Label();
 
 
@@ -248,6 +258,7 @@ namespace Chromium
                 tabtop.ToRoundedCorners(3);
                 #endregion
 
+                // Add to Controls and lists
                 this.Controls.Add(tabtop);
                 this.Controls.Add(tabview);
                 this.Controls.Add(ol);
@@ -260,12 +271,17 @@ namespace Chromium
                 tabsindex++;
             }));
         }
-
+        /// <summary>
+        /// Close a tab by index
+        /// </summary>
+        /// <param name="ti"></param>
         private void CloseTab(int ti)
         {
+            //dispose tab objects
             try { tabsList[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString());}
             try { tabsList1[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             try { tabsList2[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            //move highers lover
             foreach(var v in tabsList1)
             {
                 if (v.Key > ti - 1)

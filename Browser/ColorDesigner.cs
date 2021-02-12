@@ -17,51 +17,81 @@ namespace Chromium
             {
 
             }
+            /// <summary>
+            /// Color for Outlines
+            /// </summary>
             public Color Outlines
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Color for foreground
+            /// </summary>
             public Color Foreground
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Color for Background
+            /// </summary>
             public Color Background
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Close
+            /// </summary>
             public Bitmap Close
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Devtools
+            /// </summary>
             public Bitmap Devtools
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Newtab
+            /// </summary>
             public Bitmap Newtab
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for next
+            /// </summary>
             public Bitmap Next
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Previous
+            /// </summary>
             public Bitmap Previous
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Reload
+            /// </summary>
             public Bitmap Reload
             {
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Settings
+            /// </summary>
             public Bitmap Settings
             {
                 get;
@@ -70,6 +100,9 @@ namespace Chromium
         }
         public class ColorDesigns
         {
+            /// <summary>
+            /// Browsers dark/default Design
+            /// </summary>
             public static CombinedColor DarkDesign = new CombinedColor
             {
                 Outlines = Color.FromArgb(50, 50, 50),
@@ -83,6 +116,9 @@ namespace Chromium
                 Reload = Resources.Reload,
                 Settings = Resources.Settings
             };
+            /// <summary>
+            /// Browsers optional light design
+            /// </summary>
             public static CombinedColor LightDesign = new CombinedColor
             {
                 Outlines = Color.FromArgb(200,200,200),
@@ -96,6 +132,9 @@ namespace Chromium
                 Foreground = Color.Black,
                 Settings = Resources.SettingsDark
             };
+            /// <summary>
+            /// Browsers optional blue Design
+            /// </summary>
             public static CombinedColor BlueDesign = new CombinedColor
             {
                 Outlines = Color.FromArgb(166, 188, 255),
@@ -110,6 +149,9 @@ namespace Chromium
                 Settings = Resources.Settings
             };
         }
+        /// <summary>
+        /// Currently used Design
+        /// </summary>
         public static CombinedColor CurrentDesign = ColorDesigner.ColorDesigns.DarkDesign;
     }
 }

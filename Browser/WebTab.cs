@@ -36,9 +36,9 @@ namespace Chromium
             _url = url;
         }
         readonly string _url = "";
-#pragma warning disable IDE0044 // Modifizierer "readonly" hinzufügen
+#pragma warning disable IDE0044
         bool l = false;
-#pragma warning restore IDE0044 // Modifizierer "readonly" hinzufügen
+#pragma warning restore IDE0044
         private void Form1_Load(object sender, EventArgs e)
         {
             if(!l)
@@ -52,17 +52,18 @@ namespace Chromium
         {
             if (toolable)
             {
+                // toggle dev tools
                 if (e.KeyCode == Keys.F12)
                 {
                     if (!f12)
                     {
                         chromiumWebBrowser1.ShowDevTools();
-                        f12 = !f12;
+                        f12 = true;
                     }
                     else
                     {
                         chromiumWebBrowser1.CloseDevTools();
-                        f12 = !f12;
+                        f12 = false;
                     }
                 }
             }
@@ -77,7 +78,11 @@ namespace Chromium
         {
 
         }
-
+        /// <summary>
+        /// Load page url
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChromiumWebBrowser1_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             toolable = true;
@@ -86,6 +91,11 @@ namespace Chromium
             chromiumWebBrowser1.Load(_url);
         }
         #region finished events
+        /// <summary>
+        /// Update tab title
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChromiumWebBrowser1_TitleChanged(object sender, TitleChangedEventArgs e)
         {
             try
@@ -101,29 +111,17 @@ namespace Chromium
 
             }
         }
-
-        private void Devtools_Click(object sender, EventArgs e)
-        {
-            if (toolable)
-            {
-                if (!f12)
-                {
-                    chromiumWebBrowser1.ShowDevTools();
-                    f12 = !f12;
-                }
-                else
-                {
-                    chromiumWebBrowser1.CloseDevTools();
-                    f12 = !f12;
-                }
-            }
-        }
+        /// <summary>
+        /// Check if server is reachable
+        /// </summary>
+        /// <param name="URL"></param>
+        /// <returns></returns>
         public bool CheckWebsite(string URL)
         {
             try
             {
                 WebClient wc = new WebClient();
-                string HTMLSource = wc.DownloadString(URL);
+                string testing = wc.DownloadString(URL);
                 return true;
             }
             catch (Exception)
@@ -131,10 +129,16 @@ namespace Chromium
                 return false;
             }
         }
+        /// <summary>
+        /// Key press in url bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             Thread t = new Thread(new ThreadStart(new Action(() =>
             {
+                // if enter, load and check url
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (url.Text.StartsWith("http://"))
@@ -165,6 +169,11 @@ namespace Chromium
             t.Start();
         }
 
+        /// <summary>
+        /// Update and download icon = websites favicon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChromiumWebBrowser1_AddressChanged(object sender, AddressChangedEventArgs e)
         {
             try
@@ -172,14 +181,14 @@ namespace Chromium
                 this.Invoke(new Action(() =>
                 {
                     url.Text = e.Address;
-                    void rd()
+                    /*void rd()
                     {
                         if (dohigher)
                             visitindex++;
                         visitedUrls[visitindex] = e.Address;
                         dohigher = true;
                     }
-                    rd();
+                    rd();*/
                     WebClient wc = new WebClient();
                     Uri urls = new Uri(e.Address);
                     if (!Directory.Exists("./fav"))
@@ -209,15 +218,18 @@ namespace Chromium
 
         private void WebTab_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Cef.Shutdown();
             fis.ForEach((s) => { try { File.Delete(s); } catch (Exception) { } });
         }
-#pragma warning disable IDE0044 // Modifizierer "readonly" hinzufügen
-        Dictionary<int, string> visitedUrls = new Dictionary<int, string>();
-#pragma warning restore IDE0044 // Modifizierer "readonly" hinzufügen
-        int visitindex;
-        private bool dohigher = true;
-
+//#pragma warning disable IDE0044
+       // Dictionary<int, string> visitedUrls = new Dictionary<int, string>();
+//#pragma warning restore IDE0044
+       // int visitindex;
+       // private bool dohigher = true;
+       /// <summary>
+       /// Go nexz
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void Next_Click(object sender, EventArgs e)
         {
             try
@@ -230,7 +242,11 @@ namespace Chromium
                 next.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Go back
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Previous_Click(object sender, EventArgs e)
         {
             try
@@ -243,7 +259,11 @@ namespace Chromium
                 previous.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Reload page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Reload_Click(object sender, EventArgs e)
         {
             chromiumWebBrowser1.Reload();
@@ -255,24 +275,27 @@ namespace Chromium
         }
         public EventHandler WebTextChanged { get; set; }
         public EventHandler IconChanged { get; set; }
+        /// <summary>
+        /// Execute next
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PictureBox1_Click(object sender, EventArgs e)
         {
             Next_Click(sender,e);
         }
         #endregion
-
-        bool devtool = false;
         private void Devtoggle_Click(object sender, EventArgs e)
         {
-            if (devtool)
+            if (!f12)
             {
                 chromiumWebBrowser1.ShowDevTools();
-                devtool = !devtool;
+                f12 = true;
             }
             else
             {
                 chromiumWebBrowser1.CloseDevTools();
-                devtool = !devtool;
+                f12 = false;
             }
         }
     }
@@ -292,6 +315,22 @@ namespace Chromium
         {
             
         }
+        /// <summary>
+        /// Handle tab opened
+        /// </summary>
+        /// <param name="chromiumWebBrowser"></param>
+        /// <param name="browser"></param>
+        /// <param name="frame"></param>
+        /// <param name="targetUrl"></param>
+        /// <param name="targetFrameName"></param>
+        /// <param name="targetDisposition"></param>
+        /// <param name="userGesture"></param>
+        /// <param name="popupFeatures"></param>
+        /// <param name="windowInfo"></param>
+        /// <param name="browserSettings"></param>
+        /// <param name="noJavascriptAccess"></param>
+        /// <param name="newBrowser"></param>
+        /// <returns></returns>
         public bool OnBeforePopup(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
             Tabs.New(targetUrl);
