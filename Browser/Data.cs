@@ -10,7 +10,7 @@ namespace Chromium
     {
         public static string IncorrectUrl(string url)
         {
-            string st = "https://www.google.com/search?client=dalkbrowser&q="+url;
+            string st = Program.s.SearchRequestPrefab.Replace(@"{0}",url);
             return st;
         }
     }

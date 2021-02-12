@@ -52,6 +52,9 @@ function designb(){
 function designc(){
     window.open('design://light');
 }
+function setser(){
+    window.open('ser://' + document.getElementById('ser').value);
+}
 </script><center>
     <h1>Design</h1>
     <button onclick='designa()'>Blue Design</button>
@@ -59,6 +62,10 @@ function designc(){
 <button onclick='designb()'>Dark Design</button>
 <p />
 <button onclick='designc()'>Light Design</button>
+<h1>Environment</h1>
+<input type='text' id='ser' value='" + Program.s.SearchRequestPrefab+@"' />
+<button onclick='setser()'>Set Search Url</button>
+<p>Note: {0} gets replaced with text string to search!</p>
 <p>Note: Restart the browser that changes work!</p>
 </center></body>
 </html>
@@ -95,6 +102,11 @@ function designc(){
         }
         public bool OnBeforePopup(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
+            if (targetUrl.StartsWith("ser://"))
+            {
+                Program.s.SearchRequestPrefab = targetUrl.Remove(0,6);
+                DotDat.Save<WebBrowserSettings>("browser.setting", Program.s);
+            }
             switch (targetUrl)
             {
                 case "design://blue":
