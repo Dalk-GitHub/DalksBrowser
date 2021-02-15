@@ -22,7 +22,7 @@ namespace Chromium
             var s = new CefSettings()
             {
                 CachePath = Environment.CurrentDirectory + "/Cache",
-                IgnoreCertificateErrors = false
+                IgnoreCertificateErrors = true
             };
             Cef.Initialize(s);
         }

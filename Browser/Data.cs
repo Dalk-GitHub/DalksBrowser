@@ -18,5 +18,6 @@ namespace Chromium
             string st = Program.s.SearchRequestPrefab.Replace(@"{0}",url);
             return st;
         }
+        public static TabManager MainForm { get; set; }
     }
 }

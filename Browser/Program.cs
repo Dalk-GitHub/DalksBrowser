@@ -27,7 +27,8 @@ namespace Chromium
                 // run app
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new TabManager());
+                Data.MainForm = new TabManager();
+                Application.Run(Data.MainForm);
                 //delete old favicons after close
                 try
                 {

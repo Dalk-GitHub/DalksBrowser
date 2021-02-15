@@ -100,6 +100,13 @@
     <Compile Include="Data.cs" />
     <Compile Include="DotDat.cs" />
     <Compile Include="Extension.cs" />
+    <Compile Include="Handler.cs" />
+    <Compile Include="JSAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSAlert.Designer.cs">
+      <DependentUpon>JSAlert.cs</DependentUpon>
+    </Compile>
     <Compile Include="TabManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +128,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="JSAlert.resx">
+      <DependentUpon>JSAlert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TabManager.resx">
       <DependentUpon>TabManager.cs</DependentUpon>
     </EmbeddedResource>

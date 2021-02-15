@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using CefSharp.Handler;
 using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,8 @@ namespace Chromium
         {
             toolable = true;
             chromiumWebBrowser1.LifeSpanHandler = new NewTab();
+            chromiumWebBrowser1.KeyboardHandler = new Keyhandler();
+            chromiumWebBrowser1.JsDialogHandler = new JSHandler();
             if(l)
             chromiumWebBrowser1.Load(_url);
         }
@@ -134,39 +137,38 @@ namespace Chromium
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        void Seturl()
         {
             Thread t = new Thread(new ThreadStart(new Action(() =>
             {
-                // if enter, load and check url
-                if (e.KeyCode == Keys.Enter)
+                if (url.Text.StartsWith("http://"))
+                    chromiumWebBrowser1.Load(url.Text);
+                else if (url.Text.StartsWith("https://"))
+                    chromiumWebBrowser1.Load(url.Text);
+                else
                 {
-                    if (url.Text.StartsWith("http://"))
+                    if (CheckWebsite(url.Text))
                         chromiumWebBrowser1.Load(url.Text);
-                    else if (url.Text.StartsWith("https://"))
-                        chromiumWebBrowser1.Load(url.Text);
+                    else if (CheckWebsite("http://" + url.Text))
+                        chromiumWebBrowser1.Load("http://" + url.Text);
+                    else if (CheckWebsite("https://" + url.Text))
+                        chromiumWebBrowser1.Load("https://" + url.Text);
                     else
                     {
-                        if (CheckWebsite(url.Text))
-                            chromiumWebBrowser1.Load(url.Text);
-                        else if (CheckWebsite("http://" + url.Text))
-                            chromiumWebBrowser1.Load("http://" + url.Text);
-                        else if (CheckWebsite("https://" + url.Text))
-                            chromiumWebBrowser1.Load("https://" + url.Text);
-                        else
-                        {
-                            chromiumWebBrowser1.Load(Data.IncorrectUrl(url.Text));
-                        }
+                        chromiumWebBrowser1.Load(Data.IncorrectUrl(url.Text));
                     }
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                    this.Invoke(new Action(() =>
-                    {
-                        chromiumWebBrowser1.Focus();
-                    }));
                 }
+                this.Invoke(new Action(() =>
+                {
+                    chromiumWebBrowser1.Focus();
+                }));
+
             })));
             t.Start();
+        }
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
 
         /// <summary>
@@ -208,7 +210,11 @@ namespace Chromium
         public List<string> fis = new List<string>();
         private void Url_TextChanged(object sender, EventArgs e)
         {
-
+            if(url.Text.Replace("\r","").Replace("\n","") != url.Text)
+            {
+                url.Text = url.Text.Replace("\r", "").Replace("\n", "");
+                Seturl();
+            }
         }
  
         private void WebTab_FormClosing(object sender, FormClosingEventArgs e)
@@ -220,16 +226,6 @@ namespace Chromium
         {
             fis.ForEach((s) => { try { File.Delete(s); } catch (Exception) { } });
         }
-//#pragma warning disable IDE0044
-       // Dictionary<int, string> visitedUrls = new Dictionary<int, string>();
-//#pragma warning restore IDE0044
-       // int visitindex;
-       // private bool dohigher = true;
-       /// <summary>
-       /// Go nexz
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
         private void Next_Click(object sender, EventArgs e)
         {
             try
@@ -298,19 +294,39 @@ namespace Chromium
                 f12 = false;
             }
         }
+
+        private void ChromiumWebBrowser1_JavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
+        {
+            MessageBox.Show((string)e.Message);
+        }
     }
+
     public class NewTab : ILifeSpanHandler
     {
+        /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="chromiumWebBrowser"></param>
+    /// <param name="browser"></param>
+    /// <returns></returns>
         public bool DoClose(IWebBrowser chromiumWebBrowser, IBrowser browser)
         {
             return true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="chromiumWebBrowser"></param>
+        /// <param name="browser"></param>
         public void OnAfterCreated(IWebBrowser chromiumWebBrowser, IBrowser browser)
         {
             
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="chromiumWebBrowser"></param>
+        /// <param name="browser"></param>
         public void OnBeforeClose(IWebBrowser chromiumWebBrowser, IBrowser browser)
         {
             

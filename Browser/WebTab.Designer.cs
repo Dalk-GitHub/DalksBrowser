@@ -53,6 +53,7 @@ namespace Chromium
             this.chromiumWebBrowser1.Size = new System.Drawing.Size(1223, 582);
             this.chromiumWebBrowser1.TabIndex = 0;
             this.chromiumWebBrowser1.LoadingStateChanged += new System.EventHandler<CefSharp.LoadingStateChangedEventArgs>(this.ChromiumWebBrowser1_LoadingStateChanged);
+            this.chromiumWebBrowser1.JavascriptMessageReceived += new System.EventHandler<CefSharp.JavascriptMessageReceivedEventArgs>(this.ChromiumWebBrowser1_JavascriptMessageReceived);
             this.chromiumWebBrowser1.AddressChanged += new System.EventHandler<CefSharp.AddressChangedEventArgs>(this.ChromiumWebBrowser1_AddressChanged);
             this.chromiumWebBrowser1.TitleChanged += new System.EventHandler<CefSharp.TitleChangedEventArgs>(this.ChromiumWebBrowser1_TitleChanged);
             this.chromiumWebBrowser1.IsBrowserInitializedChanged += new System.EventHandler(this.ChromiumWebBrowser1_IsBrowserInitializedChanged);
@@ -62,23 +63,23 @@ namespace Chromium
             // 
             this.url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.url.BackColor = ColorDesigner.CurrentDesign.Background;
+            this.url.BackColor = Chromium.ColorDesigner.CurrentDesign.Background;
             this.url.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.url.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.url.ForeColor = ColorDesigner.CurrentDesign.Foreground;
+            this.url.ForeColor = Chromium.ColorDesigner.CurrentDesign.Foreground;
             this.url.Location = new System.Drawing.Point(106, 10);
-            this.url.Name = "url";
             this.url.Multiline = true;
+            this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(1087, 23);
             this.url.TabIndex = 1;
-            this.url.Text = Program.s.Startpage;
+            this.url.Text = "https://www.google.com";
             this.url.TextChanged += new System.EventHandler(this.Url_TextChanged);
             this.url.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 
             // devtoggle
             // 
             this.devtoggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.devtoggle.Image = ColorDesigner.CurrentDesign.Devtools;
+            this.devtoggle.Image = Chromium.ColorDesigner.CurrentDesign.Devtools;
             this.devtoggle.Location = new System.Drawing.Point(1199, 8);
             this.devtoggle.Name = "devtoggle";
             this.devtoggle.Size = new System.Drawing.Size(26, 26);
@@ -89,7 +90,7 @@ namespace Chromium
             // 
             // next
             // 
-            this.next.Image = ColorDesigner.CurrentDesign.Next;
+            this.next.Image = Chromium.ColorDesigner.CurrentDesign.Next;
             this.next.Location = new System.Drawing.Point(42, 8);
             this.next.Name = "next";
             this.next.Size = new System.Drawing.Size(26, 26);
@@ -100,7 +101,7 @@ namespace Chromium
             // 
             // reload
             // 
-            this.reload.Image = ColorDesigner.CurrentDesign.Reload;
+            this.reload.Image = Chromium.ColorDesigner.CurrentDesign.Reload;
             this.reload.Location = new System.Drawing.Point(74, 8);
             this.reload.Name = "reload";
             this.reload.Size = new System.Drawing.Size(26, 26);
@@ -111,7 +112,7 @@ namespace Chromium
             // 
             // previous
             // 
-            this.previous.Image = ColorDesigner.CurrentDesign.Previous;
+            this.previous.Image = Chromium.ColorDesigner.CurrentDesign.Previous;
             this.previous.Location = new System.Drawing.Point(10, 8);
             this.previous.Name = "previous";
             this.previous.Size = new System.Drawing.Size(26, 26);
@@ -124,7 +125,7 @@ namespace Chromium
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = ColorDesigner.CurrentDesign.Background;
+            this.BackColor = Chromium.ColorDesigner.CurrentDesign.Background;
             this.ClientSize = new System.Drawing.Size(1240, 665);
             this.Controls.Add(this.devtoggle);
             this.Controls.Add(this.next);
@@ -132,10 +133,10 @@ namespace Chromium
             this.Controls.Add(this.previous);
             this.Controls.Add(this.url);
             this.Controls.Add(this.chromiumWebBrowser1);
-            this.ForeColor = ColorDesigner.CurrentDesign.Foreground;
+            this.ForeColor = Chromium.ColorDesigner.CurrentDesign.Foreground;
+            this.Icon = global::Chromium.Properties.Resources.favicon;
             this.Name = "WebTab";
             this.Text = "New Tab";
-            this.Icon = Chromium.Properties.Resources.favicon;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WebTab_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WebTab_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
