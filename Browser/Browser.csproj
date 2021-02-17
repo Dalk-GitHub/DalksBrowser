@@ -55,7 +55,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>9DB7F9436EA0A4BCB9A9D07F8B034C7A011F6519</ManifestCertificateThumbprint>
@@ -95,59 +95,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowserSettings.cs" />
-    <Compile Include="ColorDesigner.cs" />
-    <Compile Include="Data.cs" />
-    <Compile Include="DotDat.cs" />
-    <Compile Include="Extension.cs" />
-    <Compile Include="Handler.cs" />
-    <Compile Include="JSAlert.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Storage\BrowserSettings.cs" />
+    <Compile Include="Storage\ColorDesigner.cs" />
+    <Compile Include="Storage\Data.cs" />
+    <Compile Include="Storage\DotDat.cs" />
+    <Compile Include="Storage\Extension.cs" />
+    <Compile Include="Storage\Handler.cs" />
+    <Compile Include="Tools\JSAlert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JSAlert.Designer.cs">
+    <Compile Include="Tools\JSAlert.Designer.cs">
       <DependentUpon>JSAlert.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabManager.cs">
+    <Compile Include="UI\TabManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TabManager.Designer.cs">
+    <Compile Include="UI\TabManager.Designer.cs">
       <DependentUpon>TabManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tabs.cs" />
-    <Compile Include="WebBrowserSettingsUi.cs">
+    <Compile Include="Storage\Tabs.cs" />
+    <Compile Include="Tools\WebBrowserSettingsUi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WebBrowserSettingsUi.Designer.cs">
+    <Compile Include="Tools\WebBrowserSettingsUi.Designer.cs">
       <DependentUpon>WebBrowserSettingsUi.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebTab.cs">
+    <Compile Include="UI\WebTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WebTab.Designer.cs">
+    <Compile Include="UI\WebTab.Designer.cs">
       <DependentUpon>WebTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Storage\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="JSAlert.resx">
+    <EmbeddedResource Include="Tools\JSAlert.resx">
       <DependentUpon>JSAlert.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabManager.resx">
+    <EmbeddedResource Include="UI\TabManager.resx">
       <DependentUpon>TabManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WebBrowserSettingsUi.resx">
+    <EmbeddedResource Include="Tools\WebBrowserSettingsUi.resx">
       <DependentUpon>WebBrowserSettingsUi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="WebTab.resx">
+    <EmbeddedResource Include="UI\WebTab.resx">
       <DependentUpon>WebTab.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -184,7 +184,8 @@
     <None Include="Resources\Newtab.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
+    <Content Include="Resources\favicon.ico" />
+    <None Include="Resources\Temp.png" />
     <None Include="Resources\Settings1.png" />
     <None Include="Resources\Settings.png" />
     <None Include="Resources\Reload1.png" />
