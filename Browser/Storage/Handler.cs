@@ -40,4 +40,16 @@ namespace Chromium
             
         }
     }
+    public class FileDownloadHandle : IDownloadHandler
+    {
+        public void OnBeforeDownload(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
+        {
+            
+        }
+
+        public void OnDownloadUpdated(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
+        {
+            
+        }
+    }
 }

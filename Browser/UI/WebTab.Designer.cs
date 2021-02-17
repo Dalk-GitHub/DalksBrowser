@@ -29,7 +29,6 @@ namespace Chromium
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebTab));
             this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
             this.url = new System.Windows.Forms.TextBox();
             this.devtoggle = new System.Windows.Forms.PictureBox();

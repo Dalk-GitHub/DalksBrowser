@@ -101,6 +101,7 @@
     <Compile Include="Additional\OfflineGame.Designer.cs">
       <DependentUpon>OfflineGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Additional\Screenshot.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,6 +195,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\favicon.ico" />
+    <None Include="Resources\Screenshot1.png" />
+    <None Include="Resources\Screenshot.png" />
     <None Include="Resources\Reset1.png" />
     <None Include="Resources\Reset.png" />
     <None Include="Resources\Temp.png" />

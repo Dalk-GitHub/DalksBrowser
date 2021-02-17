@@ -105,6 +105,14 @@ namespace Chromium
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for Cam
+            /// </summary>
+            public Bitmap Cam
+            {
+                get;
+                set;
+            }
         }
         public class ColorDesigns
         {
@@ -123,7 +131,8 @@ namespace Chromium
                 Previous = Resources.Previous,
                 Reload = Resources.Reload,
                 Settings = Resources.Settings,
-                Reset = Resources.Reset
+                Reset = Resources.Reset,
+                Cam = Resources.Cam
             };
             /// <summary>
             /// Browsers optional light design
@@ -140,7 +149,8 @@ namespace Chromium
                 Reload = Resources.ReloadDark,
                 Foreground = Color.Black,
                 Settings = Resources.SettingsDark,
-                Reset = Resources.ResetDark
+                Reset = Resources.ResetDark,
+                Cam = Resources.CamDark
             };
             /// <summary>
             /// Browsers optional blue Design
@@ -157,7 +167,8 @@ namespace Chromium
                 Reload = Resources.Reload,
                 Foreground = Color.White,
                 Settings = Resources.Settings,
-                Reset = Resources.Reset
+                Reset = Resources.Reset,
+                Cam = Resources.Cam
             };
         }
         /// <summary>

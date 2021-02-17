@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.Handler;
 using CefSharp.WinForms;
+using Chromium.Additional;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -298,6 +299,11 @@ namespace Chromium
         private void ChromiumWebBrowser1_JavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
         {
             MessageBox.Show((string)e.Message);
+        }
+
+        private void Scres_Click(object sender, EventArgs e)
+        {
+            Data.Screenshot();
         }
     }
 
