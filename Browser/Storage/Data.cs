@@ -22,6 +22,7 @@ namespace Chromium
             return st;
         }
         public static TabManager MainForm { get; set; }
+        public static int RunningDownloads = 0;
         private static string Strscrfrm()
         {
             return "./screenshots/" + 

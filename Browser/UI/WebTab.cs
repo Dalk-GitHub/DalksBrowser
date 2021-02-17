@@ -91,6 +91,7 @@ namespace Chromium
             chromiumWebBrowser1.LifeSpanHandler = new NewTab();
             chromiumWebBrowser1.KeyboardHandler = new Keyhandler();
             chromiumWebBrowser1.JsDialogHandler = new JSHandler();
+            chromiumWebBrowser1.DownloadHandler = new FileDownloadHandle();
             if(l)
             chromiumWebBrowser1.Load(_url);
         }

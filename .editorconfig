@@ -2,3 +2,6 @@
 
 # CS0618: Typ oder Element ist veraltet
 dotnet_diagnostic.CS0618.severity = none
+
+# IDE0058: Der Ausdruckswert wird niemals verwendet.
+dotnet_diagnostic.IDE0058.severity = none

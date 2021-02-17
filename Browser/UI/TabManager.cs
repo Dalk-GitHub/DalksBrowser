@@ -2,6 +2,7 @@
 using CefSharp.WinForms;
 using Chromium.Additional;
 using Chromium.Properties;
+using Chromium.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -331,6 +332,35 @@ namespace Chromium
         {
             CreateTabManager();
             CreateSettingsManager();
+        }
+
+        private void TabManager_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void TabManager_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void TabManager_DragLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TabManager_DragOver(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void TabManager_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseDialog cd = new CloseDialog();
+            if (Data.RunningDownloads != 0)
+                if (cd.ShowDialog() == DialogResult.OK)
+                    e.Cancel = false;
+                else e.Cancel = true;
         }
     }
 }
