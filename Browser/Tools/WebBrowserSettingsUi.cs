@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Thread = System.Threading.Thread;
+using ThreadStart = System.Threading.ThreadStart;
+
 
 namespace Chromium
 {
@@ -60,6 +63,9 @@ function setser(){
 function setsers(){
     window.open('sers://' + document.getElementById('sers').value);
 }
+function clo(){
+    window.open('close://');
+}
 </script><center>
     <h1>Design</h1>
     <button onclick='designa()'>Blue Design</button>
@@ -75,6 +81,9 @@ function setsers(){
 <button onclick='setsers()'>Set Startpage</button>
 <p>Note: {0} gets replaced with text string to search!</p>
 <p>Note: Restart the browser that changes work!</p>
+
+<p />
+<button onclick='clo()'>Close</button>
 </center></body>
 </html>
 ");
@@ -86,8 +95,21 @@ function setsers(){
             {
                 MessageBox.Show(ex.ToString());
             }
+            ST = new Thread(new ThreadStart(new Action(() =>
+             {
+                 while (true)
+                 {
+                     if (!SettingHandler.alive)
+                         this.Invoke(new Action(() =>
+                         {
+                             this.Close();
+                             ST.Abort();
+                         }));
+                 }
+            })));
+            ST.Start();
         }
-
+        Thread ST;
         private void ChromiumWebBrowser1_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
         {
 
@@ -95,6 +117,7 @@ function setsers(){
     }
     public class SettingHandler : ILifeSpanHandler
     {
+        public static bool alive = true;
         public bool DoClose(IWebBrowser chromiumWebBrowser, IBrowser browser)
         {
             return true;
@@ -116,6 +139,11 @@ function setsers(){
             {
                 Program.s.SearchRequestPrefab = targetUrl.Remove(0,6);
                 DotDat.Save<WebBrowserSettings>("browser.setting", Program.s);
+            }
+            if (targetUrl.StartsWith("close://"))
+            {
+                DotDat.Save<WebBrowserSettings>("browser.setting", Program.s);
+                SettingHandler.alive = false;
             }
             if (targetUrl.StartsWith("sers://"))
             {

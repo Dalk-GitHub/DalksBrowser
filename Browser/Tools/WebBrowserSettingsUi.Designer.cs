@@ -48,8 +48,11 @@ namespace Chromium
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(688, 647);
+            this.ControlBox = false;
             this.Controls.Add(this.chromiumWebBrowser1);
             this.Name = "WebBrowserSettingsUi";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Browser Settings";
             this.ResumeLayout(false);
 
