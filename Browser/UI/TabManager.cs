@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using Chromium.Additional;
 using Chromium.Properties;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -145,6 +147,23 @@ namespace Chromium
             }));
         }
         /// <summary>
+        /// Check internet connection
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckIfOnline()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://google.com/generate_204"))
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// Init new tab by url
         /// </summary>
         /// <param name="url"></param>
@@ -187,7 +206,13 @@ namespace Chromium
                 tabview.Width = this.Width;
                 tabview.Height = this.Height - 40;
                 tabview.Anchor = (AnchorStyles)1 | (AnchorStyles)2 | (AnchorStyles)4 | (AnchorStyles)8;
-                ShowFormInContainerControl(tabview, site);
+
+                //If online show site
+                //Else show offline game
+                if (CheckIfOnline())
+                    ShowFormInContainerControl(tabview, site);
+                else
+                    ShowFormInContainerControl(tabview, new OfflineGame());
 
                 tabtop.Width = 150;
                 tabtop.Height = 40;

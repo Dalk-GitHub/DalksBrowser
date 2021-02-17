@@ -97,6 +97,14 @@ namespace Chromium
                 get;
                 set;
             }
+            /// <summary>
+            /// Image for reset
+            /// </summary>
+            public Bitmap Reset
+            {
+                get;
+                set;
+            }
         }
         public class ColorDesigns
         {
@@ -114,7 +122,8 @@ namespace Chromium
                 Next = Resources.Next,
                 Previous = Resources.Previous,
                 Reload = Resources.Reload,
-                Settings = Resources.Settings
+                Settings = Resources.Settings,
+                Reset = Resources.Reset
             };
             /// <summary>
             /// Browsers optional light design
@@ -130,7 +139,8 @@ namespace Chromium
                 Previous = Resources.PreviousDark,
                 Reload = Resources.ReloadDark,
                 Foreground = Color.Black,
-                Settings = Resources.SettingsDark
+                Settings = Resources.SettingsDark,
+                Reset = Resources.ResetDark
             };
             /// <summary>
             /// Browsers optional blue Design
@@ -146,7 +156,8 @@ namespace Chromium
                 Previous = Resources.Previous,
                 Reload = Resources.Reload,
                 Foreground = Color.White,
-                Settings = Resources.Settings
+                Settings = Resources.Settings,
+                Reset = Resources.Reset
             };
         }
         /// <summary>
