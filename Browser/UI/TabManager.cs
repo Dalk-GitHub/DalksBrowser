@@ -212,7 +212,10 @@ namespace Chromium
                 if (CheckIfOnline())
                     ShowFormInContainerControl(tabview, site);
                 else
+                {
                     ShowFormInContainerControl(tabview, new OfflineGame());
+                    name.Text = "Sorry, you are offline!";
+                }
 
                 tabtop.Width = 150;
                 tabtop.Height = 40;

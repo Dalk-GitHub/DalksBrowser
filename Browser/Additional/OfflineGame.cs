@@ -33,18 +33,31 @@ namespace Chromium.Additional
                     var gr = e.Graphics;
                     gr.DrawRectangle(new Pen(rdcol, 10F), new Rectangle(x, y, 10, 10));
                 }
-                this.MouseMove+= new MouseEventHandler((s1, e1) =>
-                {
-                    try
-                    {
-                        var gr = this.CreateGraphics();
-                        gr.DrawEllipse(new Pen(ColorDesigner.CurrentDesign.Foreground, 8), new RectangleF(e1.X - 4 ,e1.Y - 4, 8,8));
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
-                    }
-                });
+            this.MouseMove += new MouseEventHandler((s1, e1) =>
+             {
+                 try
+                 {
+                     var gr = this.CreateGraphics();
+                     gr.DrawEllipse(new Pen(ColorDesigner.CurrentDesign.Foreground, 8), new RectangleF(e1.X - 4, e1.Y - 4, 8, 8));
+                 }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show(ex.ToString());
+                 }
+             });
+            ofl.MouseMove += new MouseEventHandler((s1, e1) =>
+             {
+                 try
+                 {
+                     var gr = ofl.CreateGraphics();
+                     gr.DrawEllipse(new Pen(ColorDesigner.CurrentDesign.Foreground, 8), new RectangleF(e1.X - 4, e1.Y - 4, 8, 8));
+                 }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show(ex.ToString());
+                 }
+             });
+
         }
 
         private void Redo(object sender, EventArgs e)
