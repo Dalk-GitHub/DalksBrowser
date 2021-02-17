@@ -43,6 +43,22 @@ body{
     color: var(--fgcol);
     font-family:Arial;
 }
+button{
+    width:100%;
+    border: 3px solid var(--olcol);
+    border-radius: 10px;
+    background-color: var(--bgcol);
+    color: var(--fgcol);
+    right:0;
+}
+input{
+    width:99%;
+    left:0;
+    border: 3px solid var(--olcol);
+    border-radius: 10px;
+    background-color: var(--bgcol);
+    color: var(--fgcol);
+}
 </style>
 </head>
 <body>
@@ -75,15 +91,17 @@ function clo(){
 <button onclick='designc()'>Light Design</button>
 <h1>Environment</h1>
 <input type='text' id='ser' value='" + Program.s.SearchRequestPrefab+@"' />
+<p />
 <button onclick='setser()'>Set Search Url</button>
 <p />
 <input type='text' id='sers' value='" + Program.s.Startpage+@"' />
+<p />
 <button onclick='setsers()'>Set Startpage</button>
 <p>Note: {0} gets replaced with text string to search!</p>
 <p>Note: Restart the browser that changes work!</p>
 
 <p />
-<button onclick='clo()'>Close</button>
+<button onclick='clo()' style='width:100%'>Close</button>
 </center></body>
 </html>
 ");
@@ -104,6 +122,7 @@ function clo(){
                          {
                              this.Close();
                              ST.Abort();
+                             SettingHandler.alive = true;
                          }));
                  }
             })));
