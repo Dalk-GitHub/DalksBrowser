@@ -26,6 +26,8 @@ namespace Chromium
         {
             try
             {
+                ImageConverter converter = new ImageConverter();
+                var settimg = (byte[])converter.ConvertTo(ColorDesigner.CurrentDesign.Settings, typeof(byte[]));
                 //Construct Html
                 string Code = Properties.Resources.SettingsPreset
                     .Replace("{7}",Properties.Resources.SettingsCss)
@@ -35,7 +37,8 @@ namespace Chromium
                     .Replace("{2}", ColorDesigner.CurrentDesign.Outlines.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
                     .Replace("{3}", Program.s.SearchRequestPrefab)
                     .Replace("{4}", Program.s.Startpage)
-                    .Replace("{5}", "{0}");
+                    .Replace("{5}", "{0}")
+                    .Replace("{8}", "data:image/jpeg;base64," + Convert.ToBase64String(settimg));
                 //Create Html File with Settings!
                 File.WriteAllText("settings.design", Code);
                 //Open settings In Settings Browser

@@ -79,7 +79,7 @@ namespace Chromium
         {
 
         }
-        KeyWebHandler KeyHandler = new KeyWebHandler();
+        readonly KeyWebHandler KeyHandler = new KeyWebHandler();
         /// <summary>
         /// Load page url
         /// </summary>
