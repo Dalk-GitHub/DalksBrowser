@@ -337,6 +337,7 @@ namespace Chromium
         private void TabManager_DragDrop(object sender, DragEventArgs e)
         {
 
+
         }
 
         private void TabManager_DragEnter(object sender, DragEventArgs e)

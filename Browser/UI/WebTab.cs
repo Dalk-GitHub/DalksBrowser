@@ -47,7 +47,6 @@ namespace Chromium
             chromiumWebBrowser1.Load("http://google.com");
             url.PaintOutlines(ColorDesigner.CurrentDesign.Outlines, 1, this,5);
         }
-        bool f12 = false;
         private bool toolable = false;
 
         private void ChromiumWebBrowser1_KeyDown(object sender, KeyEventArgs e)
@@ -57,15 +56,15 @@ namespace Chromium
                 // toggle dev tools
                 if (e.KeyCode == Keys.F12)
                 {
-                    if (!f12)
+                    if (!KeyHandler.Devtools)
                     {
                         chromiumWebBrowser1.ShowDevTools();
-                        f12 = true;
+                        KeyHandler.Devtools = true;
                     }
                     else
                     {
                         chromiumWebBrowser1.CloseDevTools();
-                        f12 = false;
+                        KeyHandler.Devtools = false;
                     }
                 }
             }
@@ -80,11 +79,13 @@ namespace Chromium
         {
 
         }
+        KeyWebHandler KeyHandler = new KeyWebHandler();
         /// <summary>
         /// Load page url
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void ChromiumWebBrowser1_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             toolable = true;
@@ -92,6 +93,7 @@ namespace Chromium
             chromiumWebBrowser1.KeyboardHandler = new Keyhandler();
             chromiumWebBrowser1.JsDialogHandler = new JSHandler();
             chromiumWebBrowser1.DownloadHandler = new FileDownloadHandle();
+            chromiumWebBrowser1.KeyboardHandler = KeyHandler;
             if(l)
             chromiumWebBrowser1.Load(_url);
         }
@@ -285,15 +287,15 @@ namespace Chromium
         #endregion
         private void Devtoggle_Click(object sender, EventArgs e)
         {
-            if (!f12)
+            if (!KeyHandler.Devtools)
             {
                 chromiumWebBrowser1.ShowDevTools();
-                f12 = true;
+                KeyHandler.Devtools = true;
             }
             else
             {
                 chromiumWebBrowser1.CloseDevTools();
-                f12 = false;
+                KeyHandler.Devtools = false;
             }
         }
 

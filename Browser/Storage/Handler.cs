@@ -94,4 +94,32 @@ namespace Chromium
             }
         }
     }
+    public class KeyWebHandler : IKeyboardHandler
+    {
+        public bool Devtools = false;
+        IBrowser Last;
+        public bool OnKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey)
+        {
+            if ((Keys)windowsKeyCode == Keys.F12)
+            {
+                if (Devtools)
+                {
+                    Last.CloseDevTools();
+                }
+                else if (!Devtools)
+                {
+                    browser.ShowDevTools();
+                    Devtools = true;
+                    Last = browser;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool OnPreKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey, ref bool isKeyboardShortcut)
+        {
+            return false;
+        }
+    }
 }
