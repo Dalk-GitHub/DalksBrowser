@@ -28,6 +28,7 @@ namespace Chromium
             {
                 //Construct Html
                 string Code = Properties.Resources.SettingsPreset
+                    .Replace("{7}",Properties.Resources.SettingsCss)
                     .Replace("{6}",Properties.Resources.SettingsJs)
                     .Replace("{0}", ColorDesigner.CurrentDesign.Background.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
                     .Replace("{1}", ColorDesigner.CurrentDesign.Foreground.ToString().Replace("Color [", "").Replace("]", ""))

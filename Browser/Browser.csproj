@@ -204,6 +204,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\SettingsCss.css" />
     <None Include="Resources\Previous.png" />
   </ItemGroup>
   <ItemGroup>

@@ -241,6 +241,43 @@ namespace Chromium.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die :root {
+        ///	--bgcol: {0};
+        ///	--fgcol: {1};
+        ///	--olcol: {2};
+        ///}
+        ///
+        ///body {
+        ///	background-color: var(--bgcol);
+        ///	color: var(--fgcol);
+        ///	font-family: Arial;
+        ///}
+        ///
+        ///button {
+        ///	width: 100%;
+        ///	border: 3px solid var(--olcol);
+        ///	border-radius: 10px;
+        ///	background-color: var(--bgcol);
+        ///	color: var(--fgcol);
+        ///	right: 0;
+        ///}
+        ///
+        ///input {
+        ///	width: 99%;
+        ///	left: 0;
+        ///	border: 3px solid var(--olcol);
+        ///	border-radius: 10px;
+        ///	background-color: var(--bgcol);
+        ///	color: var(--fgcol);
+        ///} ähnelt.
+        /// </summary>
+        internal static string SettingsCss {
+            get {
+                return ResourceManager.GetString("SettingsCss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap SettingsDark {
@@ -251,19 +288,24 @@ namespace Chromium.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die using System;
-        ///using System.Collections.Generic;
-        ///using System.Linq;
-        ///using System.Text;
-        ///using System.Threading.Tasks;
-        ///
-        ///namespace Chromium.Resources
-        ///{
-        ///    class SettingsJs
-        ///    {
-        ///    }
+        ///   Sucht eine lokalisierte Zeichenfolge, die function designa() {
+        ///    window.open(&apos;design://blue&apos;);
         ///}
-        /// ähnelt.
+        ///function designb() {
+        ///    window.open(&apos;design://dark&apos;);
+        ///}
+        ///function designc() {
+        ///    window.open(&apos;design://light&apos;);
+        ///}
+        ///function setser() {
+        ///    window.open(&apos;ser://&apos; + document.getElementById(&apos;ser&apos;).value);
+        ///}
+        ///function setsers() {
+        ///    window.open(&apos;sers://&apos; + document.getElementById(&apos;sers&apos;).value);
+        ///}
+        ///function clo() {
+        ///    window.open(&apos;close://&apos;);
+        ///} ähnelt.
         /// </summary>
         internal static string SettingsJs {
             get {
@@ -276,31 +318,27 @@ namespace Chromium.Properties {
         ///&lt;html&gt;
         ///&lt;head&gt;
         ///&lt;style&gt;
-        ///:root {
-        ///    --bgcol:{0};
-        ///    --fgcol:{1};
-        ///    --olcol:{2};
-        ///}
-        ///body{
-        ///    background-color: var(--bgcol);
-        ///    color: var(--fgcol);
-        ///    font-family:Arial;
-        ///}
-        ///button{
-        ///    width:100%;
-        ///    border: 3px solid var(--olcol);
-        ///    border-radius: 10px;
-        ///    background-color: var(--bgcol);
-        ///    color: var(--fgcol);
-        ///    right:0;
-        ///}
-        ///input{
-        ///    width:99%;
-        ///    left:0;
-        ///    border: 3px solid var(--olcol);
-        ///    border-radius: 10px;
-        ///    background-color: var(--bgcol);
-        ///  [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///    {7}
+        ///&lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///&lt;!--Execute window.open() to set the values--&gt;
+        ///&lt;script&gt;
+        ///    {6}
+        ///&lt;/script&gt;
+        ///    &lt;center&gt;
+        ///    &lt;h1&gt;Design&lt;/h1&gt;
+        ///    &lt;button onclick=&apos;designa()&apos;&gt;Blue Design&lt;/button&gt;
+        ///&lt;p /&gt;
+        ///&lt;button onclick=&apos;designb()&apos;&gt;Dark Design&lt;/button&gt;
+        ///&lt;p /&gt;
+        ///&lt;button onclick=&apos;designc()&apos;&gt;Light Design&lt;/button&gt;
+        ///&lt;h1&gt;Environment&lt;/h1&gt;
+        ///&lt;input type=&apos;text&apos; id=&apos;ser&apos; value=&apos;{3}&apos; /&gt;
+        ///&lt;p /&gt;
+        ///&lt;button onclick=&apos;setser()&apos;&gt;Set Search Url&lt;/button&gt;
+        ///&lt;p /&gt;
+        ///&lt;input type=&apos;text&apos; i [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string SettingsPreset {
             get {
