@@ -26,85 +26,15 @@ namespace Chromium
         {
             try
             {
+                //Construct Html
+                string Code = Properties.Resources.SettingsPreset.Replace("{0}", ColorDesigner.CurrentDesign.Background.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
+                    .Replace("{1}", ColorDesigner.CurrentDesign.Foreground.ToString().Replace("Color [", "").Replace("]", ""))
+                    .Replace("{2}", ColorDesigner.CurrentDesign.Outlines.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
+                    .Replace("{3}", Program.s.SearchRequestPrefab)
+                    .Replace("{4}", Program.s.Startpage)
+                    .Replace("{5}", "{0}");
                 //Create Html File with Settings!
-                File.WriteAllText("settings.design", @"
-<!doctype html>
-<html>
-<head>
-<style>
-:root {
-   --bgcol:" + ColorDesigner.CurrentDesign.Background.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")") +
-        ";\n   --fgcol:" + ColorDesigner.CurrentDesign.Foreground.ToString().Replace("Color [", "").Replace("]", "")/*.Replace("Color [","rgb(").Replace("=","").Replace("R","").Replace("A255,","").Replace("G","").Replace("B","").Replace("]",")")*/ +
-        ";\n   --olcol:" + ColorDesigner.CurrentDesign.Outlines.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")")
-        + @";
-}
-body{
-    background-color: var(--bgcol);
-    color: var(--fgcol);
-    font-family:Arial;
-}
-button{
-    width:100%;
-    border: 3px solid var(--olcol);
-    border-radius: 10px;
-    background-color: var(--bgcol);
-    color: var(--fgcol);
-    right:0;
-}
-input{
-    width:99%;
-    left:0;
-    border: 3px solid var(--olcol);
-    border-radius: 10px;
-    background-color: var(--bgcol);
-    color: var(--fgcol);
-}
-</style>
-</head>
-<body>
-<!--Execute window.open() to set the values-->
-<script>
-function designa(){
-    window.open('design://blue');
-}
-function designb(){
-    window.open('design://dark');
-}
-function designc(){
-    window.open('design://light');
-}
-function setser(){
-    window.open('ser://' + document.getElementById('ser').value);
-}
-function setsers(){
-    window.open('sers://' + document.getElementById('sers').value);
-}
-function clo(){
-    window.open('close://');
-}
-</script><center>
-    <h1>Design</h1>
-    <button onclick='designa()'>Blue Design</button>
-<p />
-<button onclick='designb()'>Dark Design</button>
-<p />
-<button onclick='designc()'>Light Design</button>
-<h1>Environment</h1>
-<input type='text' id='ser' value='" + Program.s.SearchRequestPrefab+@"' />
-<p />
-<button onclick='setser()'>Set Search Url</button>
-<p />
-<input type='text' id='sers' value='" + Program.s.Startpage+@"' />
-<p />
-<button onclick='setsers()'>Set Startpage</button>
-<p>Note: {0} gets replaced with text string to search!</p>
-<p>Note: Restart the browser that changes work!</p>
-
-<p />
-<button onclick='clo()' style='width:100%'>Close</button>
-</center></body>
-</html>
-");
+                File.WriteAllText("settings.design", Code);
                 //Open settings In Settings Browser
                 chromiumWebBrowser1.LifeSpanHandler = new SettingHandler();
                 chromiumWebBrowser1.LoadHtml(File.ReadAllText("settings.design"));

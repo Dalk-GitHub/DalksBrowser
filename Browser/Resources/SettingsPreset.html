@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<style>
+:root {
+    --bgcol:{0};
+    --fgcol:{1};
+    --olcol:{2};
+}
+body{
+    background-color: var(--bgcol);
+    color: var(--fgcol);
+    font-family:Arial;
+}
+button{
+    width:100%;
+    border: 3px solid var(--olcol);
+    border-radius: 10px;
+    background-color: var(--bgcol);
+    color: var(--fgcol);
+    right:0;
+}
+input{
+    width:99%;
+    left:0;
+    border: 3px solid var(--olcol);
+    border-radius: 10px;
+    background-color: var(--bgcol);
+    color: var(--fgcol);
+}
+</style>
+</head>
+<body>
+<!--Execute window.open() to set the values-->
+<script>
+function designa(){
+    window.open('design://blue');
+}
+function designb(){
+    window.open('design://dark');
+}
+function designc(){
+    window.open('design://light');
+}
+function setser(){
+    window.open('ser://' + document.getElementById('ser').value);
+}
+function setsers(){
+    window.open('sers://' + document.getElementById('sers').value);
+}
+function clo(){
+    window.open('close://');
+}
+</script><center>
+    <h1>Design</h1>
+    <button onclick='designa()'>Blue Design</button>
+<p />
+<button onclick='designb()'>Dark Design</button>
+<p />
+<button onclick='designc()'>Light Design</button>
+<h1>Environment</h1>
+<input type='text' id='ser' value='{3}' />
+<p />
+<button onclick='setser()'>Set Search Url</button>
+<p />
+<input type='text' id='sers' value='{4}' />
+<p />
+<button onclick='setsers()'>Set Startpage</button>
+<p>Note: {5} gets replaced with text string to search!</p>
+<p>Note: Restart the browser that changes work!</p>
+
+<p />
+<button onclick='clo()' style='width:100%'>Close</button>
+</center></body>
+</html>
