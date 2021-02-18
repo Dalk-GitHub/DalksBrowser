@@ -47,6 +47,7 @@ namespace Chromium
         readonly Dictionary<int, Control> tabsList = new Dictionary<int, Control>();
         readonly Dictionary<int, Control> tabsList1 = new Dictionary<int, Control>();
         readonly Dictionary<int, Control> tabsList2 = new Dictionary<int, Control>();
+        readonly Dictionary<int, Control> activityList = new Dictionary<int, Control>();
         private void CreateTabManager()
         {
             this.Invoke(new Action(() =>
@@ -184,6 +185,8 @@ namespace Chromium
                 PictureBox close = new PictureBox();
                 // Display site title
                 Label name = new Label();
+                //Panel to show Opened Tab
+                Panel ops = new Panel();
 
 
                 site.WebTextChanged += new EventHandler((s, e) =>
@@ -218,6 +221,26 @@ namespace Chromium
                     name.Text = "Sorry, you are offline!";
                 }
 
+                ops.Width = 150;
+                ops.BackColor = Color.DodgerBlue;
+                ops.Height = 3;
+                ops.Left = 0;
+                ops.Top = 0;
+                ops.Visible = false;
+
+
+                void ShTab()
+                {
+                    foreach (var v in tabsList)
+                        v.Value.Visible = false;
+                    foreach (var v in activityList)
+                        v.Value.Visible = false;
+                    tabview.Visible = true;
+                    ops.Visible = true;
+                    this.Text = site.Text + " - Dalks Browser";
+                    this.Icon = site.Icon;
+                }
+
                 tabtop.Width = 150;
                 tabtop.Height = 40;
                 tabtop.Left = 40 + tabsindex * 151;
@@ -225,11 +248,7 @@ namespace Chromium
                 tabtop.BackColor = ColorDesigner.CurrentDesign.Background;
                 tabtop.Click += new EventHandler((s, e) =>
                 {
-                    foreach (var v in tabsList)
-                        v.Value.Visible = false;
-                    tabview.Visible = true;
-                    this.Text = site.Text + " - Dalks Browser";
-                    this.Icon = site.Icon;
+                    ShTab();
                 });
 
                 icon.Height = 20;
@@ -240,11 +259,7 @@ namespace Chromium
                 icon.Image = site.Icon.ToBitmap();
                 icon.Click += new EventHandler((s, e) =>
                 {
-                    foreach (var v in tabsList)
-                        v.Value.Visible = false;
-                    tabview.Visible = true;
-                    this.Text = site.Text + " - Dalks Browser";
-                    this.Icon = site.Icon;
+                    ShTab();
                 });
 
                 close.Height = 20;
@@ -267,11 +282,7 @@ namespace Chromium
                 name.TextAlign = ContentAlignment.MiddleCenter;
                 name.Click += new EventHandler((s, e) =>
                 {
-                    foreach (var v in tabsList)
-                        v.Value.Visible = false;
-                    tabview.Visible = true;
-                    this.Text = site.Text + " - Dalks Browser";
-                    this.Icon = site.Icon;
+                    ShTab();
                 });
 
                 Panel ol = new Panel
@@ -293,11 +304,14 @@ namespace Chromium
                 this.Controls.Add(ol);
                 tabtop.Controls.Add(icon);
                 tabtop.Controls.Add(close);
+                tabtop.Controls.Add(ops);
                 tabtop.Controls.Add(name);
                 tabsList[tabsindex] = tabview;
                 tabsList1[tabsindex] = tabtop;
                 tabsList2[tabsindex] = ol;
+                activityList[tabsindex] = ops;
                 tabsindex++;
+                ShTab();
             }));
         }
         /// <summary>
@@ -310,6 +324,7 @@ namespace Chromium
             try { tabsList[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString());}
             try { tabsList1[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             try { tabsList2[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            try { activityList[ti].Dispose(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             //move highers lover
             foreach(var v in tabsList1)
             {
