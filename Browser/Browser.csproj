@@ -220,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\favicon.ico" />
+    <Content Include="Resources\SettingsJs.js" />
     <Content Include="Resources\SettingsPreset.html" />
     <None Include="Resources\Screenshot1.png" />
     <None Include="Resources\Screenshot.png" />

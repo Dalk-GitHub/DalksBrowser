@@ -27,7 +27,9 @@ namespace Chromium
             try
             {
                 //Construct Html
-                string Code = Properties.Resources.SettingsPreset.Replace("{0}", ColorDesigner.CurrentDesign.Background.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
+                string Code = Properties.Resources.SettingsPreset
+                    .Replace("{6}",Properties.Resources.SettingsJs)
+                    .Replace("{0}", ColorDesigner.CurrentDesign.Background.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
                     .Replace("{1}", ColorDesigner.CurrentDesign.Foreground.ToString().Replace("Color [", "").Replace("]", ""))
                     .Replace("{2}", ColorDesigner.CurrentDesign.Outlines.ToString().Replace("Color [", "rgb(").Replace("=", "").Replace("R", "").Replace("A255,", "").Replace("G", "").Replace("B", "").Replace("]", ")"))
                     .Replace("{3}", Program.s.SearchRequestPrefab)

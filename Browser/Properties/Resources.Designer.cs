@@ -251,7 +251,56 @@ namespace Chromium.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Text;
+        ///using System.Threading.Tasks;
+        ///
+        ///namespace Chromium.Resources
+        ///{
+        ///    class SettingsJs
+        ///    {
+        ///    }
+        ///}
+        /// ähnelt.
+        /// </summary>
+        internal static string SettingsJs {
+            get {
+                return ResourceManager.GetString("SettingsJs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;!doctype html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///&lt;style&gt;
+        ///:root {
+        ///    --bgcol:{0};
+        ///    --fgcol:{1};
+        ///    --olcol:{2};
+        ///}
+        ///body{
+        ///    background-color: var(--bgcol);
+        ///    color: var(--fgcol);
+        ///    font-family:Arial;
+        ///}
+        ///button{
+        ///    width:100%;
+        ///    border: 3px solid var(--olcol);
+        ///    border-radius: 10px;
+        ///    background-color: var(--bgcol);
+        ///    color: var(--fgcol);
+        ///    right:0;
+        ///}
+        ///input{
+        ///    width:99%;
+        ///    left:0;
+        ///    border: 3px solid var(--olcol);
+        ///    border-radius: 10px;
+        ///    background-color: var(--bgcol);
+        ///  [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string SettingsPreset {
             get {
