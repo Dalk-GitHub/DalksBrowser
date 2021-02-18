@@ -11,24 +11,29 @@
     {6}
 </script>
     <center>
-    <h1>Design</h1>
-    <button onclick='designa()'>Blue Design</button>
-<p />
-<button onclick='designb()'>Dark Design</button>
-<p />
-<button onclick='designc()'>Light Design</button>
-<h1>Environment</h1>
-<input type='text' id='ser' value='{3}' />
-<p />
-<button onclick='setser()'>Set Search Url</button>
-<p />
-<input type='text' id='sers' value='{4}' />
-<p />
-<button onclick='setsers()'>Set Startpage</button>
-<p>Note: {5} gets replaced with text string to search!</p>
-<p>Note: Restart the browser that changes work!</p>
-
-<p />
-<button onclick='clo()' style='width:100%'>Close</button>
-</center></body>
+    <div id="set">
+        <p id="sett"><img class="settimg" />Settings</p>
+    </div>
+    <div id="ctn">
+        <p id="des">Design</p>
+        <button onclick='designa()'>Blue Design</button>
+        <p />
+        <button onclick='designb()'>Dark Design</button>
+        <p />
+        <button onclick='designc()'>Light Design</button>
+        <p id='env'>Environment</p>
+        <input type='text' id='ser' value='{3}' />
+        <p />
+        <button onclick='setser()'>Set Search Url</button>
+        <p />
+        <input type='text' id='sers' value='{4}' />
+        <p />
+        <button onclick='setsers()'>Set Startpage</button>
+        <p>Note: {5} gets replaced with text string to search!</p>
+        <p>Note: Restart the browser that changes work!</p>
+        <p />
+        <button onclick='clo()' style='width:100%'>Close</button>
+    </div>
+    </center>
+</body>
 </html>
