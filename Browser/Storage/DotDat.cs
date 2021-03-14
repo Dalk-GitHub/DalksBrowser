@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
 
 namespace Chromium
 {
@@ -54,5 +55,15 @@ namespace Chromium
                 formatter.Serialize(stream, list);
             }
         }
+        /*public static void SaveJson<T>(string fileName, T list)
+        {
+            string json = JsonSerializer.Serialize(list);
+            File.WriteAllText(fileName,json);
+        }
+        public static T LoadJson<T>(string fileName, T list)
+        {
+            string json = File.ReadAllText(fileName);
+            return JsonSerializer.Deserialize<T>(json);
+        }*/
     }
 }

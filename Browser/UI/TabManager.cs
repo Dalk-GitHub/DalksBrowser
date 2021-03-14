@@ -27,6 +27,8 @@ namespace Chromium
                 CachePath = Environment.CurrentDirectory + "/Cache",
                 IgnoreCertificateErrors = true
             };
+            s.CefCommandLineArgs.Add("enable-media-stream", "1");
+            s.CefCommandLineArgs.Add("enable-usermedia-screen-capturing", "1");
             Cef.Initialize(s);
         }
         private void TabManager_Load(object sender, EventArgs e)

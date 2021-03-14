@@ -24,7 +24,9 @@ namespace Chromium
             InitializeComponent();
             chromiumWebBrowser1.BrowserSettings = new BrowserSettings
             {
-                Javascript = CefState.Enabled
+                Javascript = CefState.Enabled,
+                FileAccessFromFileUrls = CefState.Enabled,
+                UniversalAccessFromFileUrls = CefState.Enabled
             };
         }
         public WebTab(string url)
@@ -90,8 +92,8 @@ namespace Chromium
         {
             toolable = true;
             chromiumWebBrowser1.LifeSpanHandler = new NewTab();
-            chromiumWebBrowser1.KeyboardHandler = new Keyhandler();
             chromiumWebBrowser1.JsDialogHandler = new JSHandler();
+            //chromiumWebBrowser1.
             chromiumWebBrowser1.DownloadHandler = new FileDownloadHandle();
             chromiumWebBrowser1.KeyboardHandler = KeyHandler;
             if(l)
@@ -358,9 +360,10 @@ namespace Chromium
         /// <returns></returns>
         public bool OnBeforePopup(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
-            Tabs.New(targetUrl);
+                Tabs.New(targetUrl);
             newBrowser = null;
             return true;
         }
     }
+    
 }

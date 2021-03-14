@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Chromium
 {
@@ -114,7 +115,7 @@ namespace Chromium
                 set;
             }
         }
-        public class ColorDesigns
+        public static class ColorDesigns
         {
             /// <summary>
             /// Browsers dark/default Design
